@@ -47,7 +47,7 @@ export default function RegisterPage() {
         toast({
             variant: 'destructive',
             title: "Erreur d'inscription",
-            description: error.message || "Impossible de créer le compte. Veuillez réessayer.",
+            description: "Impossible de créer le compte. Veuillez réessayer.",
         });
     } finally {
         setIsLoading(false);

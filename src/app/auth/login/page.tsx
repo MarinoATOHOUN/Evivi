@@ -46,7 +46,7 @@ export default function LoginPage() {
       toast({
         variant: 'destructive',
         title: "Erreur de connexion",
-        description: error.message || "Impossible de se connecter. Vérifiez vos identifiants.",
+        description: "Impossible de se connecter. Vérifiez vos identifiants.",
       });
     } finally {
         setIsLoading(false);

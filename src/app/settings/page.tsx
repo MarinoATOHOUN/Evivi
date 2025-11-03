@@ -18,8 +18,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Label } from '@/components/ui/label';
 import AuthGuard from '@/components/shared/AuthGuard';
 import { useAuth } from '@/contexts/AuthContext';
-import { useEffect } from 'react';
-import { api } from '@/lib/api';
+import { useEffect, useState } from 'react';
 
 const profileSchema = z.object({
   username: z.string().min(3, "Le nom d'utilisateur doit faire au moins 3 caractères."),
@@ -33,6 +32,8 @@ const accountSchema = z.object({
 function SettingsPageContent() {
   const { toast } = useToast();
   const { user, refetchUser } = useAuth();
+  const [isSubmittingProfile, setIsSubmittingProfile] = useState(false);
+  const [isSubmittingAccount, setIsSubmittingAccount] = useState(false);
 
   const profileForm = useForm<z.infer<typeof profileSchema>>({
     resolver: zodResolver(profileSchema),
@@ -57,23 +58,24 @@ function SettingsPageContent() {
   }, [user, profileForm, accountForm]);
 
   const onProfileSubmit = async (data: z.infer<typeof profileSchema>) => {
-    try {
-        await api.patch('/users/me/', { user: { username: data.username }, bio: data.bio });
+    setIsSubmittingProfile(true);
+    // Mock submission
+    setTimeout(() => {
         toast({ title: 'Profil mis à jour avec succès !' });
-        refetchUser();
-    } catch (error: any) {
-        toast({ variant: 'destructive', title: 'Erreur', description: error.message || 'Impossible de mettre à jour le profil.' });
-    }
+        // In a real app, you would refetch the user data here.
+        // refetchUser();
+        setIsSubmittingProfile(false);
+    }, 1000);
   };
   
   const onAccountSubmit = async (data: z.infer<typeof accountSchema>) => {
-    try {
-        await api.patch('/users/me/', { user: { email: data.email } });
+    setIsSubmittingAccount(true);
+    // Mock submission
+    setTimeout(() => {
         toast({ title: 'Adresse e-mail mise à jour !' });
-        refetchUser();
-    } catch (error: any) {
-        toast({ variant: 'destructive', title: 'Erreur', description: error.message || 'Impossible de mettre à jour l\'e-mail.' });
-    }
+        // refetchUser();
+        setIsSubmittingAccount(false);
+    }, 1000);
   };
   
   if (!user) return null;
@@ -118,8 +120,8 @@ function SettingsPageContent() {
                   <FormField name="bio" control={profileForm.control} render={({ field }) => (
                     <FormItem><FormLabel>Biographie</FormLabel><FormControl><Textarea placeholder="Parlez-nous un peu de vous..." {...field} /></FormControl><FormMessage /></FormItem>
                   )} />
-                  <Button type="submit" disabled={profileForm.formState.isSubmitting}>
-                    {profileForm.formState.isSubmitting ? "Enregistrement..." : "Enregistrer les modifications"}
+                  <Button type="submit" disabled={isSubmittingProfile}>
+                    {isSubmittingProfile ? "Enregistrement..." : "Enregistrer les modifications"}
                   </Button>
                 </form>
               </Form>
@@ -139,8 +141,8 @@ function SettingsPageContent() {
                             <FormField name="email" control={accountForm.control} render={({ field }) => (
                                 <FormItem><FormLabel>Adresse e-mail</FormLabel><FormControl><Input type="email" placeholder="votre@email.com" {...field} /></FormControl><FormMessage /></FormItem>
                             )} />
-                            <Button type="submit" disabled={accountForm.formState.isSubmitting}>
-                                {accountForm.formState.isSubmitting ? "Mise à jour..." : "Mettre à jour l'e-mail"}
+                            <Button type="submit" disabled={isSubmittingAccount}>
+                                {isSubmittingAccount ? "Mise à jour..." : "Mettre à jour l'e-mail"}
                             </Button>
                         </form>
                    </Form>
