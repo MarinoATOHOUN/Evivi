@@ -5,12 +5,18 @@ import { useRouter } from 'next/navigation';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Utensils, User, Settings, LogOut } from 'lucide-react';
+import { Utensils, User, Settings, LogOut, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '../shared/ThemeToggle';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { useAuth } from '@/contexts/AuthContext';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Separator } from '../ui/separator';
 
+const navLinks = [
+  { name: 'Recettes', href: '/recipes' },
+  { name: 'Blog', href: '/blog' },
+];
 
 export default function Header() {
   const [hidden, setHidden] = useState(false);
@@ -32,6 +38,76 @@ export default function Header() {
     logout();
     router.push('/');
   }
+
+  const MobileNav = () => (
+    <Sheet>
+        <SheetTrigger asChild>
+            <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+                <span className="sr-only">Ouvrir le menu</span>
+            </Button>
+        </SheetTrigger>
+        <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <SheetHeader className="text-left">
+                <SheetTitle>
+                    <Link href="/" className="flex items-center gap-2">
+                        <Utensils className="h-6 w-6 text-primary" />
+                        <span className="font-headline text-xl font-bold text-primary">Évivi</span>
+                    </Link>
+                </SheetTitle>
+            </SheetHeader>
+            <div className="mt-8 flex flex-col h-full">
+                <div className="flex flex-col gap-6">
+                    {navLinks.map((link) => (
+                        <SheetClose asChild key={link.name}>
+                            <Link href={link.href} className="text-lg font-medium text-foreground hover:text-primary transition-colors">
+                                {link.name}
+                            </Link>
+                        </SheetClose>
+                    ))}
+                </div>
+                <Separator className="my-6" />
+                {user ? (
+                     <div className="flex flex-col gap-4">
+                        <SheetClose asChild>
+                            <Link href="/profile" className="flex items-center gap-3"><User className="mr-2 h-5 w-5" />Profil</Link>
+                        </SheetClose>
+                        <SheetClose asChild>
+                            <Link href="/settings" className="flex items-center gap-3"><Settings className="mr-2 h-5 w-5" />Paramètres</Link>
+                        </SheetClose>
+                        <Separator className="my-2" />
+                        <SheetClose asChild>
+                            <Button variant="ghost" onClick={handleLogout} className="justify-start p-0 h-auto">
+                                <LogOut className="mr-3 h-5 w-5" />
+                                <span>Déconnexion</span>
+                            </Button>
+                        </SheetClose>
+                    </div>
+                ) : (
+                    <div className="flex flex-col gap-4">
+                        <SheetClose asChild>
+                            <Button asChild variant="outline">
+                                <Link href="/auth/login">Connexion</Link>
+                            </Button>
+                        </SheetClose>
+                         <SheetClose asChild>
+                            <Button asChild>
+                                <Link href="/auth/register">S'inscrire</Link>
+                            </Button>
+                        </SheetClose>
+                    </div>
+                )}
+                 <div className="mt-auto pb-8">
+                    <Separator className="my-4" />
+                    <div className="flex justify-between items-center">
+                        <p className="text-sm text-muted-foreground">Changer de thème</p>
+                        <ThemeToggle />
+                    </div>
+                </div>
+            </div>
+        </SheetContent>
+    </Sheet>
+  );
 
   return (
     <motion.header
@@ -55,7 +131,7 @@ export default function Header() {
             </Link>
           ))}
         </div>
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
           <ThemeToggle />
           {user ? (
             <DropdownMenu>
@@ -101,12 +177,10 @@ export default function Header() {
             </>
           )}
         </div>
+        <div className="md:hidden">
+            <MobileNav />
+        </div>
       </nav>
     </motion.header>
   );
 }
-
-const navLinks = [
-  { name: 'Recettes', href: '/recipes' },
-  { name: 'Blog', href: '/blog' },
-];
