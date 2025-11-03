@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function TermsPage() {
   return (
-    <div className="container mx-auto py-24 px-4 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="prose prose-invert prose-lg max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Conditions d'Utilisation</h1>
         <p className="lead">Dernière mise à jour : 25 octobre 2025</p>

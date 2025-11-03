@@ -35,9 +35,11 @@ export default function RootLayout({
           <AuthProvider>
             <AnimatedBackground />
             <Header />
-            <PageTransition>
-              {children}
-            </PageTransition>
+            <main className="container mx-auto">
+              <PageTransition>
+                {children}
+              </PageTransition>
+            </main>
             <Footer />
             <Toaster />
           </AuthProvider>

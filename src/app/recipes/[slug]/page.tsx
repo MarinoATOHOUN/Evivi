@@ -47,7 +47,7 @@ const ParallaxImage = ({ recipe }: { recipe: Recipe }) => {
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   return (
-    <div ref={ref} className="relative h-[80vh] overflow-hidden">
+    <div ref={ref} className="relative h-[80vh] overflow-hidden -mx-4">
       <motion.div style={{ y }} className="absolute inset-0">
         <Image
           src={recipe.imageUrl}
@@ -213,8 +213,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ slug: s
       if (!user) return;
       const newComment: CommentType = {
           id: Date.now(),
-          author: { id: user.id, username: user.username },
-          avatarUrl: user.avatarUrl,
+          author: { id: user.id, username: user.username, avatarUrl: user.avatarUrl },
           text,
           timestamp: 'à l\'instant',
           likes: 0,
@@ -227,8 +226,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ slug: s
        if (!user) return;
       const newReply: CommentType = {
           id: Date.now(),
-          author: { id: user.id, username: user.username },
-          avatarUrl: user.avatarUrl,
+          author: { id: user.id, username: user.username, avatarUrl: user.avatarUrl },
           text,
           timestamp: 'à l\'instant',
           likes: 0,
@@ -254,7 +252,7 @@ export default function RecipeDetailPage({ params }: { params: Promise<{ slug: s
     <motion.div initial="hidden" animate="visible" variants={containerVariants}>
       <ParallaxImage recipe={recipe} />
 
-      <div className="container mx-auto -mt-24 relative z-20 px-4">
+      <div className="-mt-24 relative z-20 px-4">
         <motion.div variants={itemVariants} className="p-8 rounded-xl glassmorphic grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
             <div className="flex flex-col items-center gap-2">
                 <Clock className="w-8 h-8 text-primary"/>

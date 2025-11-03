@@ -81,7 +81,7 @@ function SettingsPageContent() {
   if (!user) return null;
 
   return (
-    <div className="container mx-auto py-32 px-4 min-h-screen">
+    <div className="py-32 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-5xl md:text-6xl font-headline font-bold text-center">Paramètres</h1>
         <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">Gérez les informations de votre compte, votre profil et vos préférences.</p>

@@ -32,7 +32,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
 
   return (
     <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-      <div className="relative h-[60vh]">
+      <div className="relative h-[60vh] -mx-4">
         <Image
           src={article.imageUrl}
           alt={article.title}
@@ -59,7 +59,7 @@ export default function ArticlePage({ params }: { params: Promise<{ slug: string
         </div>
       </div>
 
-      <div className="container mx-auto max-w-3xl py-16 px-4">
+      <div className="max-w-3xl mx-auto py-16 px-4">
         <motion.div variants={itemVariants} className="prose prose-invert prose-lg max-w-none prose-headings:font-headline prose-headings:text-primary prose-a:text-secondary prose-blockquote:border-secondary prose-blockquote:text-secondary/80">
           <p className="lead text-xl text-muted-foreground">{article.excerpt}</p>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</p>

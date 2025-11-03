@@ -106,7 +106,7 @@ export default function RecipesPage() {
   }, [searchTerm, category, country, allRecipes]);
 
   return (
-    <div className="container mx-auto py-24 px-4 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
         <div className="text-center">
             <h1 className="text-5xl md:text-6xl font-headline font-bold">Toutes les <span className="text-gradient">Recettes</span></h1>

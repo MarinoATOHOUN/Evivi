@@ -31,7 +31,7 @@ function ProfilePageContent() {
 
     return (
         <div className="min-h-screen pt-32">
-            <div className="relative h-[50vh] flex items-center justify-center">
+            <div className="relative h-[50vh] flex items-center justify-center -mx-4">
                 <div className="absolute inset-0 overflow-hidden z-0">
                     <Image src="https://picsum.photos/seed/profile-bg/1920/1080" alt="Profile background" fill className="object-cover opacity-20" data-ai-hint="abstract texture" />
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background" />
@@ -62,7 +62,7 @@ function ProfilePageContent() {
                 </motion.div>
             </div>
             
-            <div className="container mx-auto -mt-16 relative z-10 px-4 pb-24">
+            <div className="-mt-16 relative z-10 px-4 pb-24">
                  <motion.div 
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}

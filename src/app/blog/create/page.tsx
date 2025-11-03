@@ -71,7 +71,7 @@ export default function CreateArticlePage() {
   }
 
   return (
-    <div className="container mx-auto py-24 px-4 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
        <style jsx global>{`
         .ql-toolbar {
           border-top-left-radius: var(--radius);

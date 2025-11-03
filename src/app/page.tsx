@@ -171,7 +171,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen -mx-4">
       <main className="flex-grow">
         {/* Hero Section */}
         <section className="relative flex items-center justify-center h-screen-safe overflow-hidden">

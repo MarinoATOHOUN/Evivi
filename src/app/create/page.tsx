@@ -81,7 +81,7 @@ export default function CreateRecipePage() {
   }
 
   return (
-    <div className="container mx-auto py-24 px-4 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }}>
         <h1 className="text-5xl md:text-6xl font-headline font-bold text-center">Créez votre <span className="text-gradient">Chef-d'œuvre</span></h1>
         <p className="text-center text-muted-foreground mt-4 max-w-2xl mx-auto">Partagez votre recette avec la communauté Évivi. Remplissez les champs ci-dessous pour commencer.</p>

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 export default function LegalNoticePage() {
   return (
-    <div className="container mx-auto py-24 px-4 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="prose prose-invert prose-lg max-w-4xl mx-auto">
         <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Mentions Légales</h1>
         <p className="lead">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la confiance en l'économie numérique.</p>
