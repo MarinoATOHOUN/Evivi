@@ -1,0 +1,102 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%; /* #0A0A0A */
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 4%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 51 100% 50%; /* #FFD700 */
+    --primary-foreground: 51 100% 10%;
+
+    --secondary: 23 80% 52%; /* #E57C23 */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 80 98% 44%; /* #A4DE02 */
+    --accent-foreground: 80 98% 10%;
+    
+    --indigo: 227 51% 31%; /* #273C75 */
+    
+    --destructive: 352 51% 46%; /* #B23A48 */
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 51 100% 50%;
+
+    --radius: 0.5rem;
+  }
+
+  .light {
+    --background: 0 0% 96%; /* #F5F5F5 */
+    --foreground: 0 0% 4%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 51 100% 10%;
+    
+    --secondary: 23 80% 52%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 80 98% 44%;
+    --accent-foreground: 80 98% 10%;
+
+    --destructive: 352 51% 46%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 51 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .glassmorphic {
+    @apply bg-card/50 backdrop-blur-lg border border-primary/10;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-destructive bg-clip-text text-transparent;
+  }
+  
+  .h-screen-safe {
+    height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    height: calc(var(--vh, 1vh) * 100);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px 0px hsl(var(--primary) / 0.5);
+  }
+  50% {
+    box-shadow: 0 0 35px 5px hsl(var(--primary) / 0.7);
+  }
+}

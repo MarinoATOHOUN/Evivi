@@ -1,0 +1,100 @@
+{
+  "placeholderImages": [
+    {
+      "id": "thieboudienne",
+      "description": "A delicious plate of Thieboudienne, a Senegalese fish and rice dish.",
+      "imageUrl": "https://images.unsplash.com/photo-1702827482556-481adcd68f3b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxzZW5lZ2FsZXNlJTIwZm9vZHxlbnwwfHx8fDE3NjE0MjE0NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "senegalese food"
+    },
+    {
+      "id": "jollof-rice",
+      "description": "Vibrant and flavorful Jollof rice in a large pot.",
+      "imageUrl": "https://images.unsplash.com/photo-1708782344137-21c48d98dfcc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxnaGFuYWlhbiUyMGZvb2R8ZW58MHx8fHwxNzYxMzU3NzkxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ghanaian food"
+    },
+    {
+      "id": "tagine",
+      "description": "A traditional Moroccan lamb tagine with apricots and almonds.",
+      "imageUrl": "https://images.unsplash.com/photo-1643019237176-8ae0859f1123?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb3JvY2NhbiUyMGZvb2R8ZW58MHx8fHwxNzYxMzQxMDMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "moroccan food"
+    },
+    {
+      "id": "poulet-yassa",
+      "description": "Grilled Poulet Yassa with onions and lemon.",
+      "imageUrl": "https://images.unsplash.com/photo-1676984014290-c6d6f080f035?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxzZW5lZ2FsZXNlJTIwY2hpY2tlbnxlbnwwfHx8fDE3NjE0MjE0NDF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "senegalese chicken"
+    },
+    {
+      "id": "injera",
+      "description": "Ethiopian Injera bread with various stews (wats).",
+      "imageUrl": "https://images.unsplash.com/photo-1422207109431-97544339f995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxldGhpb3BpYW4lMjBmb29kfGVufDB8fHx8MTc2MTQyMTQ0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ethiopian food"
+    },
+    {
+      "id": "bobotie",
+      "description": "A slice of South African Bobotie, a spiced minced meat dish with a creamy topping.",
+      "imageUrl": "https://images.unsplash.com/photo-1596119414082-f7949bc0bb3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb3V0aCUyMGFmcmljYW4lMjBmb29kfGVufDB8fHx8MTc2MTQyMTQ0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "south african food"
+    },
+    {
+      "id": "couscous-royale",
+      "description": "A festive bowl of Couscous Royale with seven vegetables and various meats.",
+      "imageUrl": "https://images.unsplash.com/photo-1726514733206-0aef2e150718?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhbGdlcmlhbiUyMGNvdXNjb3VzfGVufDB8fHx8MTc2MTQwOTkwN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "algerian couscous"
+    },
+    {
+      "id": "ndole",
+      "description": "A bowl of Ndolé from Cameroon, a stew of nuts, ndoleh leaves, and fish or meat.",
+      "imageUrl": "https://images.unsplash.com/photo-1688940738506-acfe9334bf5c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2FtZXJvb25pYW4lMjBmb29kfGVufDB8fHx8MTc2MTQyMTQ0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cameroonian food"
+    },
+    {
+      "id": "sukuma-wiki",
+      "description": "Kenyan Sukuma Wiki (collard greens) served with Ugali.",
+      "imageUrl": "https://images.unsplash.com/photo-1666181190996-80ed100c66ef?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxrZW55YW4lMjBmb29kfGVufDB8fHx8MTc2MTQyMTQ0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "kenyan food"
+    },
+    {
+      "id": "blog-market",
+      "description": "A bustling African market scene with vibrant spices.",
+      "imageUrl": "https://images.unsplash.com/photo-1518219051733-d8d4fbbf9797?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhZnJpY2FuJTIwbWFya2V0fGVufDB8fHx8MTc2MTQwMDU0OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "african market"
+    },
+    {
+      "id": "blog-spices",
+      "description": "A close-up of various colorful African spices in bowls.",
+      "imageUrl": "https://images.unsplash.com/photo-1668674790130-251ec785febf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxhZnJpY2FuJTIwc3BpY2VzfGVufDB8fHx8MTc2MTQyMTQ0MXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "african spices"
+    },
+    {
+      "id": "blog-hands",
+      "description": "Hands preparing dough on a wooden table.",
+      "imageUrl": "https://images.unsplash.com/photo-1606858274001-dd10efc5ce7d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxmb29kJTIwcHJlcGFyYXRpb258ZW58MHx8fHwxNzYxNDA5MzE5fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "food preparation"
+    },
+    {
+      "id": "blog-community",
+      "description": "People sharing a meal together outdoors.",
+      "imageUrl": "https://images.unsplash.com/photo-1564758564527-b97d79cb27c1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb21tdW5pdHklMjBlYXRpbmd8ZW58MHx8fHwxNzYxMzE2NDM2fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "community eating"
+    },
+    {
+      "id": "user-avatar-1",
+      "description": "Avatar for a user named Amina.",
+      "imageUrl": "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHx3b21hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc2MTM4NTI1OHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "user-avatar-2",
+      "description": "Avatar for a user named Kofi.",
+      "imageUrl": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtYW4lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjEzNjg0OTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "man portrait"
+    },
+    {
+      "id": "user-avatar-3",
+      "description": "Avatar for a user named Fatima.",
+      "imageUrl": "https://images.unsplash.com/photo-1598625873873-52f9aefd7d9d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3b21hbiUyMHNtaWxpbmd8ZW58MHx8fHwxNzYxMzQ1MjEwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "woman smiling"
+    }
+  ]
+}

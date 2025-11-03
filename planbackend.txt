@@ -1,0 +1,168 @@
+# Plan de Développement - API Backend Django pour Évivi
+
+## 1. Introduction et Stack Technologique
+
+Ce document détaille l'architecture et le plan de développement pour l'API RESTful du projet Évivi. L'objectif est de créer un backend sécurisé, scalable et performant.
+
+**Stack technologique principale :**
+- **Framework :** Django
+- **API :** Django REST Framework (DRF)
+- **Authentification :** JWT (JSON Web Tokens) via `djangorestframework-simplejwt`
+- **Base de données (Prod) :** PostgreSQL
+- **Gestion des images :** `Pillow` et stockage cloud (ex: Firebase Storage ou AWS S3) en production.
+- **Validation :** Sérialiseurs DRF
+- **Documentation API :** `drf-spectacular` pour générer un schéma OpenAPI 3.
+
+---
+
+## 2. Structure du Projet Django
+
+Le projet sera organisé en plusieurs applications Django pour une meilleure séparation des préoccupations :
+
+```
+evivi_backend/
+├── evivi_project/  # Configuration principale du projet
+│   ├── settings.py
+│   ├── urls.py
+│   └── ...
+├── apps/
+│   ├── users/      # Gestion des utilisateurs, profils, authentification
+│   ├── recipes/    # Gestion des recettes, ingrédients, étapes, commentaires, "Miams"
+│   └── blog/       # Gestion des articles de blog
+├── manage.py
+└── requirements.txt
+```
+
+---
+
+## 3. Modèles de Données (models.py)
+
+### a. `apps.users.models.User`
+Nous étendrons le modèle `AbstractUser` de Django pour inclure des champs supplémentaires.
+- `username` (fourni par Django)
+- `email` (fourni par Django, sera utilisé pour le login)
+- `password` (fourni par Django)
+- `avatar` (ImageField, optionnel)
+- `bio` (TextField, optionnel)
+- `date_joined` (fourni par Django)
+- `last_login` (fourni par Django)
+
+### b. `apps.recipes.models.Recipe`
+- `slug` (SlugField, unique) : Généré automatiquement à partir du titre.
+- `title` (CharField)
+- `description` (TextField)
+- `main_image` (ImageField) : Image principale de la recette.
+- `category` (CharField, avec des choix) : "Afrique de l’Ouest", "Afrique du Nord", etc.
+- `country` (CharField) : Pays d'origine.
+- `author` (ForeignKey vers `User`)
+- `created_at`, `updated_at` (DateTimeField)
+
+### c. `apps.recipes.models.Ingredient`
+- `name` (CharField)
+- `quantity` (CharField)
+- `recipe` (ForeignKey vers `Recipe`, relation `related_name='ingredients'`)
+
+### d. `apps.recipes.models.Step`
+- `step_number` (PositiveIntegerField)
+- `description` (TextField)
+- `recipe` (ForeignKey vers `Recipe`, relation `related_name='steps'`)
+
+### e. `apps.recipes.models.Like` ("Miam")
+- `user` (ForeignKey vers `User`)
+- `recipe` (ForeignKey vers `Recipe`, relation `related_name='likes'`)
+- `created_at` (DateTimeField)
+- Contrainte `unique_together` sur `('user', 'recipe')` pour qu'un utilisateur ne puisse aimer qu'une fois.
+
+### f. `apps.blog.models.Article`
+- `slug` (SlugField, unique)
+- `title` (CharField)
+- `excerpt` (TextField) : Résumé court.
+- `content` (TextField) : Contenu complet de l'article (Markdown ou HTML).
+- `cover_image` (ImageField)
+- `author` (ForeignKey vers `User`)
+- `status` (CharField, avec choix : "Draft", "Published")
+- `created_at`, `updated_at` (DateTimeField)
+
+### g. `apps.comments.models.Comment` (Pourrait être sa propre app ou dans `recipes` et `blog`)
+Pour la simplicité, nous utiliserons une seule table de commentaires avec une relation générique pour lier aux recettes ET aux articles.
+- `author` (ForeignKey vers `User`)
+- `content` (TextField)
+- `parent` (ForeignKey vers `self`, pour les réponses, optionnel)
+- `content_type` (ForeignKey vers `ContentType`)
+- `object_id` (PositiveIntegerField)
+- `content_object` (GenericForeignKey) : Lie le commentaire à une `Recipe` ou un `Article`.
+- `created_at` (DateTimeField)
+
+---
+
+## 4. Points d'Accès de l'API (Endpoints)
+
+Base URL : `/api/`
+
+### a. Authentification et Utilisateurs (`/api/auth/` et `/api/users/`)
+- **`POST /api/auth/register/`**: Création d'un nouvel utilisateur.
+- **`POST /api/auth/login/`**: Connexion d'un utilisateur, renvoie des tokens `access` et `refresh`.
+- **`POST /api/auth/token/refresh/`**: Rafraîchir un token d'accès expiré.
+- **`GET /api/users/me/`**: Obtenir les détails de l'utilisateur connecté (requiert authentification).
+- **`PUT/PATCH /api/users/me/`**: Mettre à jour le profil de l'utilisateur connecté.
+- **`GET /api/users/<username>/`**: Obtenir le profil public d'un utilisateur.
+
+### b. Recettes (`/api/recipes/`)
+- **`GET /api/recipes/`**: Lister toutes les recettes publiées, avec filtres (`?category=`, `?country=`, `?search=`).
+- **`POST /api/recipes/`**: Créer une nouvelle recette (requiert authentification).
+- **`GET /api/recipes/<slug>/`**: Obtenir les détails d'une recette spécifique.
+- **`PUT/PATCH /api/recipes/<slug>/`**: Mettre à jour une recette (requiert d'être l'auteur).
+- **`DELETE /api/recipes/<slug>/`**: Supprimer une recette (requiert d'être l'auteur).
+
+### c. "Miams" / Likes (`/api/recipes/<slug>/like/`)
+- **`POST /api/recipes/<slug>/like/`**: Ajouter ou retirer un "Miam" sur une recette (requiert authentification). L'API gérera la logique de création/suppression.
+
+### d. Articles de Blog (`/api/blog/`)
+- **`GET /api/blog/`**: Lister tous les articles publiés.
+- **`POST /api/blog/`**: Créer un nouvel article (requiert permissions d'admin ou de staff).
+- **`GET /api/blog/<slug>/`**: Obtenir les détails d'un article.
+- **`PUT/PATCH /api/blog/<slug>/`**: Mettre à jour un article.
+- **`DELETE /api/blog/<slug>/`**: Supprimer un article.
+
+### e. Commentaires (`/api/recipes/<slug>/comments/` et `/api/blog/<slug>/comments/`)
+- **`GET /api/recipes/<slug>/comments/`**: Lister les commentaires d'une recette.
+- **`POST /api/recipes/<slug>/comments/`**: Poster un commentaire sur une recette (requiert authentification). Les réponses se feront en passant un `parent_id` dans le corps de la requête.
+- Mêmes endpoints pour le blog en remplaçant `recipes` par `blog`.
+
+---
+
+## 5. Sérialiseurs (serializers.py)
+
+Chaque application (`users`, `recipes`, `blog`) aura son propre fichier de sérialiseurs.
+
+- **`UserRegisterSerializer`**: Pour l'inscription (valide `username`, `email`, `password`).
+- **`UserProfileSerializer`**: Pour l'affichage et la mise à jour du profil utilisateur.
+- **`IngredientSerializer`** et **`StepSerializer`**: Seront imbriqués dans le sérialiseur de recette.
+- **`RecipeSerializer`**: Pour la création et la mise à jour de recettes. Gérera les sérialiseurs imbriqués pour les ingrédients et les étapes.
+- **`RecipeListSerializer`**: Une version allégée pour les listes (moins de champs).
+- **`ArticleSerializer`**: Pour les articles de blog.
+- **`CommentSerializer`**: Pour créer et afficher les commentaires, avec gestion des réponses imbriquées.
+
+---
+
+## 6. Permissions
+
+DRF a un système de permissions flexible. Nous utiliserons :
+- `AllowAny`: Pour les endpoints publics (liste des recettes, lecture d'un article).
+- `IsAuthenticated`: Pour les actions nécessitant d'être connecté (commenter, aimer).
+- `IsAuthenticatedOrReadOnly`: Pour les endpoints où la lecture est publique mais l'écriture est privée.
+- **Permissions Personnalisées**: Nous créerons une permission `IsOwnerOrReadOnly` pour s'assurer que seuls les auteurs peuvent modifier ou supprimer leur contenu (recettes, commentaires).
+
+---
+
+## 7. Dépendances (requirements.txt)
+
+```
+django
+djangorestframework
+psycopg2-binary # Pour PostgreSQL
+djangorestframework-simplejwt
+django-cors-headers # Pour gérer les requêtes cross-origin du frontend
+Pillow # Pour le traitement des images
+drf-spectacular # Pour la documentation
+```

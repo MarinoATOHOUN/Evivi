@@ -1,0 +1,67 @@
+diff --git a/node_modules/react-quill/lib/index.js b/node_modules/react-quill/lib/index.js
+index 9b69996..64a51f7 100644
+--- a/node_modules/react-quill/lib/index.js
++++ b/node_modules/react-quill/lib/index.js
+@@ -102,6 +102,7 @@ var QuillComponent = /*#__PURE__*/function (_React$Component) {
+     _this.state = {
+       generation: 0
+     };
++    _this.editingArea = /*#__PURE__*/React.createRef()
+     return _this;
+   }
+ 
+@@ -113,7 +114,7 @@ var QuillComponent = /*#__PURE__*/function (_React$Component) {
+   };
+ 
+   _proto.getEditingArea = function getEditingArea() {
+-    return ReactDOM.findDOMNode(this);
++    return this.editingArea.current;
+   };
+ 
+   _proto.getEditor = function getEditor() {
+@@ -341,7 +342,7 @@ var QuillComponent = /*#__PURE__*/function (_React$Component) {
+     })));
+ 
+     return /*#__PURE__*/React.createElement('div', {
+-      ref: this.setEditingArea,
++      ref: this.editingArea,
+       id: this.props.id,
+       style: this.props.style,
+       className: "quill " + this.props.className,
+diff --git a/node_modules/react-quill/lib/index.mjs b/node_modules/react-quill/lib/index.mjs
+index 72c72b2..b61a7eb 100644
+--- a/node_modules/react-quill/lib/index.mjs
++++ b/node_modules/react-quill/lib/index.mjs
+@@ -1,5 +1,5 @@
+ import React from 'react';
+-import ReactDOM from 'react-dom';
++import { createRef } from 'react';
+ import Quill from 'quill';
+ import PropTypes from 'prop-types';
+ import isEqual from 'lodash/isEqual';
+@@ -98,6 +98,7 @@ class QuillComponent extends React.Component {
+     this.state = {
+       generation: 0
+     };
++    this.editingArea = /*#__PURE__*/createRef();
+   }
+ 
+   /*
+@@ -107,7 +108,7 @@ class QuillComponent extends React.Component {
+   };
+ 
+   getEditingArea = () => {
+-    return ReactDOM.findDOMNode(this);
++    return this.editingArea.current;
+   };
+ 
+   getEditor = () => {
+@@ -337,7 +338,7 @@ class QuillComponent extends React.Component {
+     })));
+ 
+     return /*#__PURE__*/React.createElement('div', {
+-      ref: this.setEditingArea,
++      ref: this.editingArea,
+       id: this.props.id,
+       style: this.props.style,
+       className: "quill " + this.props.className,
