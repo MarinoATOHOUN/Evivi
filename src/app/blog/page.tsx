@@ -54,7 +54,7 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="py-24 min-h-screen">
+    <div className="py-24 px-4 min-h-screen">
       <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="text-center mb-12">
         <h1 className="text-5xl md:text-6xl font-headline font-bold">Histoires <span className="text-gradient">Culinaires</span></h1>
         <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">Plongez dans les récits, les traditions et les innovations qui façonnent la cuisine africaine.</p>
