@@ -1,0 +1,9 @@
+
+{
+  "name": "Évivi African Gastronomy",
+  "description": "A premium social platform dedicated to sharing and discovering African culinary recipes with a modern feed experience.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
