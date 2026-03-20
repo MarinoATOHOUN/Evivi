@@ -1,12 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/:match*",
-      "destination": "https://rinogeek.pythonanywhere.com/api/:match*"
+      "source": "/api/(.*)",
+      "destination": "https://rinogeek.pythonanywhere.com/api/$1"
     },
     {
-      "source": "/media/:match*",
-      "destination": "https://rinogeek.pythonanywhere.com/media/:match*"
+      "source": "/media/(.*)",
+      "destination": "https://rinogeek.pythonanywhere.com/media/$1"
     },
     {
       "source": "/(.*)",

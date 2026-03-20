@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: '/api', // This would be the actual backend URL
+  baseURL: 'https://rinogeek.pythonanywhere.com/api', // Direct backend URL
 });
 
 api.interceptors.request.use((config) => {
