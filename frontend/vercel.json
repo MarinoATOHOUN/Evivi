@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://rinogeek.pythonanywhere.com/api/:match*"
+    },
+    {
+      "source": "/media/:match*",
+      "destination": "https://rinogeek.pythonanywhere.com/media/:match*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
